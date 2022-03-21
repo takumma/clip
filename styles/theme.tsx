@@ -1,9 +1,6 @@
-import { createTheming } from "@callstack/react-theme-provider";
-import React, { useEffect, useReducer, useState } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
 
 const themeLocalStorageKey = "theme";
-
-type ThemeMode = "light" | "dark";
 
 type Theme = {
   primaryColor: string;
@@ -12,7 +9,7 @@ type Theme = {
   backgroundColor: string;
 };
 
-const THEME: { light: Theme; dark: Theme } = {
+const THEMES: { light: Theme; dark: Theme } = {
   light: {
     primaryColor: "#312E81",
     textColor: "#0E0D26",
@@ -27,10 +24,18 @@ const THEME: { light: Theme; dark: Theme } = {
   },
 };
 
-const { ThemeProvider, useTheme } = createTheming(THEME.light);
+type ThemeContextType = {
+  theme: Theme;
+  toggleThemeMode: () => void;
+};
 
-const useCustomTheme = () => {
-  const [theme, changeTheme] = useReducer((prev) => {
+const ThemeContext = createContext<ThemeContextType>({
+  theme: THEMES.light,
+  toggleThemeMode: () => {},
+});
+
+const ThemeProvider: React.FC = ({ children }) => {
+  const [themeMode, toggleThemeMode] = useReducer((prev) => {
     if (prev === "light") {
       localStorage.setItem(themeLocalStorageKey, "dark");
       return "dark";
@@ -44,28 +49,23 @@ const useCustomTheme = () => {
     const localTheme = localStorage.getItem("theme");
 
     if (localTheme === "dark") {
-      changeTheme();
+      toggleThemeMode();
     }
   }, []);
 
-  return {
-    theme,
-    changeTheme,
-  };
-};
-
-type Prop = {
-  children: React.ReactNode;
-};
-
-const CustomThemeProvider = ({ children }: Prop) => {
-  const { theme } = useCustomTheme();
-
   return (
-    <ThemeProvider theme={theme === "light" ? THEME.light : THEME.dark}>
+    <ThemeContext.Provider
+      value={{
+        theme: themeMode === "light" ? THEMES.light : THEMES.dark,
+        toggleThemeMode: () => toggleThemeMode(),
+      }}
+    >
       {children}
-    </ThemeProvider>
+    </ThemeContext.Provider>
   );
 };
 
-export { CustomThemeProvider, useTheme };
+const useTheme = () => React.useContext(ThemeContext);
+
+export { useTheme, ThemeProvider };
+export type { Theme };
