@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 import { ThemeProvider } from "styled-components";
 
 const themeLocalStorageKey = "theme";
@@ -25,6 +25,16 @@ const THEMES: { light: Theme; dark: Theme } = {
   },
 };
 
+type ToggleThemeContextType = {
+  toggleTheme: () => void;
+};
+
+const ToggleThemeContext = createContext<ToggleThemeContextType>({
+  toggleTheme: () => {},
+});
+
+const useToggleTheme = () => useContext(ToggleThemeContext);
+
 const CustomThemeProvider: React.FC = ({ children }) => {
   const [themeMode, toggleThemeMode] = useReducer((prev) => {
     if (prev === "light") {
@@ -45,11 +55,15 @@ const CustomThemeProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <ThemeProvider theme={themeMode === "light" ? THEMES.light : THEMES.dark}>
-      {children}
-    </ThemeProvider>
+    <ToggleThemeContext.Provider
+      value={{ toggleTheme: () => toggleThemeMode() }}
+    >
+      <ThemeProvider theme={themeMode === "light" ? THEMES.light : THEMES.dark}>
+        {children}
+      </ThemeProvider>
+    </ToggleThemeContext.Provider>
   );
 };
 
-export { CustomThemeProvider };
+export { useToggleTheme, CustomThemeProvider };
 export type { Theme };

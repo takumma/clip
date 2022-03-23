@@ -5,6 +5,8 @@ export const GlobalStyles = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
+    background-color: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.textColor};
     font-family: "Noto Sans JP", sans-serif;
   }
 

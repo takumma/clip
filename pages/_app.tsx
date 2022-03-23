@@ -6,8 +6,8 @@ import { CustomThemeProvider } from "../styles/theme";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyles />
       <CustomThemeProvider>
+        <GlobalStyles />
         <Component {...pageProps} />
       </CustomThemeProvider>
     </>
