@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
+import { ThemeProvider } from "styled-components";
 
 const themeLocalStorageKey = "theme";
 
@@ -24,17 +25,7 @@ const THEMES: { light: Theme; dark: Theme } = {
   },
 };
 
-type ThemeContextType = {
-  theme: Theme;
-  toggleThemeMode: () => void;
-};
-
-const ThemeContext = createContext<ThemeContextType>({
-  theme: THEMES.light,
-  toggleThemeMode: () => {},
-});
-
-const ThemeProvider: React.FC = ({ children }) => {
+const CustomThemeProvider: React.FC = ({ children }) => {
   const [themeMode, toggleThemeMode] = useReducer((prev) => {
     if (prev === "light") {
       localStorage.setItem(themeLocalStorageKey, "dark");
@@ -54,18 +45,11 @@ const ThemeProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <ThemeContext.Provider
-      value={{
-        theme: themeMode === "light" ? THEMES.light : THEMES.dark,
-        toggleThemeMode: () => toggleThemeMode(),
-      }}
-    >
+    <ThemeProvider theme={themeMode === "light" ? THEMES.light : THEMES.dark}>
       {children}
-    </ThemeContext.Provider>
+    </ThemeProvider>
   );
 };
 
-const useTheme = () => React.useContext(ThemeContext);
-
-export { useTheme, ThemeProvider };
+export { CustomThemeProvider };
 export type { Theme };

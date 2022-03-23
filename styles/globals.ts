@@ -1,21 +1,19 @@
-import { css } from "linaria";
+import { createGlobalStyle } from "styled-components";
 
-export const globalStyles = css`
-  :global() {
-    html,
-    body {
-      padding: 0;
-      margin: 0;
-      font-family: "Noto Sans JP", sans-serif;
-    }
+export const GlobalStyles = createGlobalStyle`
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: "Noto Sans JP", sans-serif;
+  }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  * {
+    box-sizing: border-box;
   }
 `;
