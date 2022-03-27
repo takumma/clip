@@ -8,14 +8,18 @@ type Prop = {
 
 const ArticleList = ({ articles }: Prop) => {
   return (
-    <Wrapper>
+    <>
       {articles.map((article, i) => (
-        <ArticleItem key={i} article={article} />
+        <ItemWrapper key={i}>
+          <ArticleItem article={article} />
+        </ItemWrapper>
       ))}
-    </Wrapper>
+    </>
   );
 };
 
-const Wrapper = styled.div``;
+const ItemWrapper = styled.div`
+  margin: 16px 0;
+`;
 
 export default ArticleList;

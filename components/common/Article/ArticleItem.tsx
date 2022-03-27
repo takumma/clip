@@ -11,7 +11,7 @@ const ArticleItem = ({ article }: Prop) => {
     <A href={article.url}>
       <Wrapper>
         <ArticleLinkIcon />
-        <div>
+        <ArticleItemWrapper>
           <Title>{article.title}</Title>
           <div>
             <ArticleMeta>
@@ -19,7 +19,7 @@ const ArticleItem = ({ article }: Prop) => {
               <span>{article.date}</span>
             </ArticleMeta>
           </div>
-        </div>
+        </ArticleItemWrapper>
       </Wrapper>
     </A>
   );
@@ -43,14 +43,23 @@ const ArticleLinkIcon = styled(LinkIcon)`
   margin: 6px;
 `;
 
-const Site = styled.span``;
+const ArticleItemWrapper = styled.div`
+  width: calc(100% - 48px);
+`;
+
+const Site = styled.span`
+  margin-right: 32px;
+`;
 
 const ArticleMeta = styled.p`
+  margin: 8px 0;
+  display: flex;
   color: ${({ theme }) => theme.secondaryTextColor};
   font-size: 0.875rem;
 `;
 
 const Title = styled.h2`
+  margin: 0;
   font-size: 1rem;
   font-weight: 700;
   display: -webkit-box;

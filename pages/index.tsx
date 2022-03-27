@@ -37,7 +37,7 @@ const Home: NextPage = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: ${(props) => props.theme.backgroundColor};
+  margin: 0 16px;
 `;
 
 export default Home;
