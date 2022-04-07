@@ -8,6 +8,7 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.backgroundColor};
     color: ${({ theme }) => theme.textColor};
     font-family: "Noto Sans JP", sans-serif;
+    transition: background-color 0.5s;
   }
 
   a {
