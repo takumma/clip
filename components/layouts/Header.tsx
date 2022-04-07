@@ -1,17 +1,24 @@
 import styled from "styled-components";
+import ThemeToggle from "../common/Theme/ThemeToggle";
 import Logo from "./Logo";
 
 const Header = () => {
   return (
     <HeaderWrapper>
-      <Logo />
-      <Title>takummaの書いた記事まとめ</Title>
+      <ThemeToggle />
+      <LogoWrapper>
+        <Logo />
+        <Title>takummaの書いた記事まとめ</Title>
+      </LogoWrapper>
     </HeaderWrapper>
   );
 };
 
 const HeaderWrapper = styled.div`
-  margin: 64px auto 0;
+  margin: 48px auto 0;
+`;
+
+const LogoWrapper = styled.div`
   text-align: center;
 `;
 

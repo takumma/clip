@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 const themeLocalStorageKey = "theme";
 
 type Theme = {
+  mode: "light" | "dark";
   primaryColor: string;
   textColor: string;
   secondaryTextColor: string;
@@ -12,12 +13,14 @@ type Theme = {
 
 const THEMES: { light: Theme; dark: Theme } = {
   light: {
+    mode: "light",
     primaryColor: "#312E81",
     textColor: "#0E0D26",
     secondaryTextColor: "#5D5C70",
     backgroundColor: "#F8F9FC",
   },
   dark: {
+    mode: "dark",
     primaryColor: "#827FD1",
     textColor: "#F8F9FC",
     secondaryTextColor: "#A6A5B6",
