@@ -12,7 +12,7 @@ const Layout: React.FC = ({ children }) => {
 
 const Wrapper = styled.div`
   max-width: 780px;
-  margin: 48px auto 0;
+  margin: 16px auto 0;
 `;
 
 export default Layout;
