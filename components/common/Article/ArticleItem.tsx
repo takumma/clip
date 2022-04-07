@@ -8,28 +8,27 @@ type Prop = {
 
 const ArticleItem = ({ article }: Prop) => {
   return (
-    <A href={article.url}>
-      <Wrapper>
-        <ArticleLinkIcon />
+    <Wrapper>
+      <A href={article.url}>
         <ArticleItemWrapper>
           <Title>{article.title}</Title>
-          <div>
-            <ArticleMeta>
-              <Site>{article.url.split("/")[2]}</Site>
-              <span>{article.date}</span>
-            </ArticleMeta>
-          </div>
+          <ArticleMeta>
+            <Site>{article.url.split("/")[2]}</Site>
+            <time>{article.date}</time>
+          </ArticleMeta>
         </ArticleItemWrapper>
-      </Wrapper>
-    </A>
+        <ArticleLinkIcon />
+      </A>
+    </Wrapper>
   );
 };
 
-const A = styled.a`
-  text-decoration: none;
+const Wrapper = styled.article`
+  width: 300px;
 `;
 
-const Wrapper = styled.div`
+const A = styled.a`
+  text-decoration: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,7 +47,7 @@ const ArticleItemWrapper = styled.div`
 `;
 
 const Site = styled.span`
-  margin-right: 32px;
+  margin-right: 24px;
 `;
 
 const ArticleMeta = styled.p`
