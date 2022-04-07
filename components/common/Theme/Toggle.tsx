@@ -50,6 +50,7 @@ const ToggleTrack = styled.input`
   border-radius: 15px;
   width: 40px;
   height: 24px;
+  margin: 0;
   &:checked + ${ToggleThumb} {
     background: ${({ theme }) => theme.primaryColor};
     &::after {

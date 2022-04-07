@@ -4,18 +4,21 @@ import Logo from "./Logo";
 
 const Header = () => {
   return (
-    <HeaderWrapper>
-      <ThemeToggle />
+    <>
+      <ToggleWrapper>
+        <ThemeToggle />
+      </ToggleWrapper>
       <LogoWrapper>
         <Logo />
         <Title>takummaの書いた記事まとめ</Title>
       </LogoWrapper>
-    </HeaderWrapper>
+    </>
   );
 };
 
-const HeaderWrapper = styled.div`
-  margin: 48px auto 0;
+const ToggleWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const LogoWrapper = styled.div`
