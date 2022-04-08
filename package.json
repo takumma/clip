@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "svgr": "npx @svgr/cli",
+    "svgr-dir": "npx @svgr/cli -d"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.0.6",
