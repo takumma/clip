@@ -63,5 +63,5 @@ async function getFeedItemsFromSources(sources: undefined | string[]) {
   const feedItems = await getFeedItemsFromSources(sources);
   feedItems.sort((a, b) => b.dateMiliSeconds - a.dateMiliSeconds);
   fs.ensureDirSync(".contents");
-  fs.writeJsonSync(".contents/posts.json", feedItems);
+  fs.writeJsonSync(".contents/articles.json", feedItems);
 })();

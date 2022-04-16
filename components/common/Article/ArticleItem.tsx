@@ -6,15 +6,20 @@ type Prop = {
   article: Article;
 };
 
+const formatDate = (isoDate: string) => {
+  const date = new Date(isoDate);
+  return `${date.getFullYear()} / ${date.getMonth()} / ${date.getDay()}`;
+};
+
 const ArticleItem = ({ article }: Prop) => {
   return (
     <Wrapper>
-      <A href={article.url} target="_blank">
+      <A href={article.link} target="_blank">
         <ArticleItemWrapper>
           <Title>{article.title}</Title>
           <ArticleMeta>
-            <Site>{article.url.split("/")[2]}</Site>
-            <time>{article.date}</time>
+            <Site>{article.link.split("/")[2]}</Site>
+            <time>{formatDate(article.isoDate)}</time>
           </ArticleMeta>
         </ArticleItemWrapper>
         <ArticleLinkIcon />
@@ -24,7 +29,7 @@ const ArticleItem = ({ article }: Prop) => {
 };
 
 const Wrapper = styled.article`
-  max-width: 368px;
+  width: 368px;
   padding: 16px;
 `;
 

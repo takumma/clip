@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:posts": "ts-node --project tsconfig.builder.json ./builder/posts.ts",
+    "build:articles": "ts-node --project tsconfig.builder.json ./builder/articles.ts",
     "start": "next start",
     "lint": "next lint",
     "svgr": "npx @svgr/cli",
