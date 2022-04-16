@@ -26,7 +26,7 @@ const ArticleListWrapper = styled.div`
 `;
 
 const ItemWrapper = styled.div`
-  margin: 16px auto;
+  margin: 16px;
 `;
 
 export default ArticleList;

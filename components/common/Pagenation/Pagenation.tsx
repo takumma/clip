@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import LeftArrow from "./Arrows/LeftArrow";
 import RightArrow from "./Arrows/RightArrow";
+import PagenationNumber from "./PagenationNumber";
 import usePagenation from "./usePagenation";
 
 type Prop = {
@@ -33,16 +34,33 @@ const Pagenation = ({
     onPageChange(currentPage - 1);
   };
 
+  const firstPage = pagenationRange[0];
+
   const lastPage = pagenationRange[-1];
 
   if (currentPage === 0 || pagenationRange.length < 2) return null;
 
   return (
     <PagenationWrapper>
-      <ArrowWrapper onClick={() => onPrev()}>
+      <ArrowWrapper
+        disabled={currentPage === firstPage}
+        onClick={() => onPrev()}
+      >
         <LeftArrow />
       </ArrowWrapper>
-      <ArrowWrapper onClick={() => onNext()}>
+      {pagenationRange.map((v, i) => (
+        <PagenationNumberWrapper key={i}>
+          <PagenationNumber
+            onClick={() => onPageChange(v)}
+            num={v}
+            isCurrent={v === currentPage}
+          />
+        </PagenationNumberWrapper>
+      ))}
+      <ArrowWrapper
+        disabled={currentPage === lastPage}
+        onClick={() => onNext()}
+      >
         <RightArrow />
       </ArrowWrapper>
     </PagenationWrapper>
@@ -51,8 +69,35 @@ const Pagenation = ({
 
 const PagenationWrapper = styled.ul`
   list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
 `;
 
-const ArrowWrapper = styled.li``;
+const PagenationNumberWrapper = styled.li`
+  margin: 0 4px;
+`;
+
+type ArrowWrapperType = {
+  disabled: boolean;
+};
+
+const ArrowWrapper = styled.li<ArrowWrapperType>`
+  margin: 0 12px;
+  padding: 7px 5px;
+  border-radius: 50%;
+  ${(props) => (props.disabled ? ArrowDisabled : ArrowHover)}
+`;
+
+const ArrowDisabled = css`
+  pointer-events: none;
+`;
+
+const ArrowHover = css`
+  :hover {
+    transition: 0.25s;
+    opacity: 0.6;
+  }
+`;
 
 export default Pagenation;
