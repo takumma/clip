@@ -5,13 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:posts": "ts-node --project tsconfig.builder.json ./builder/posts.ts",
     "start": "next start",
     "lint": "next lint",
     "svgr": "npx @svgr/cli",
     "svgr-dir": "npx @svgr/cli -d"
   },
   "dependencies": {
-    "babel-plugin-styled-components": "^2.0.6",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -20,13 +20,18 @@
   "devDependencies": {
     "@babel/core": "^7.17.8",
     "@svgr/cli": "^6.2.1",
+    "@types/fs-extra": "^9.0.13",
     "@types/node": "17.0.21",
     "@types/react": "17.0.40",
     "@types/styled-components": "^5.1.24",
+    "babel-plugin-styled-components": "^2.0.7",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "eslint-config-prettier": "^8.5.0",
+    "fs-extra": "^10.0.1",
     "prettier": "^2.6.0",
+    "rss-parser": "^3.12.0",
+    "ts-node": "^10.7.0",
     "typescript": "4.6.2"
   }
 }
