@@ -10,9 +10,7 @@ const ArticleList = ({ articles }: Prop) => {
   return (
     <ArticleListWrapper>
       {articles.map((article, i) => (
-        <ItemWrapper key={i}>
-          <ArticleItem article={article} />
-        </ItemWrapper>
+        <ArticleItem key={i} article={article} />
       ))}
     </ArticleListWrapper>
   );
@@ -21,12 +19,13 @@ const ArticleList = ({ articles }: Prop) => {
 const ArticleListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
-`;
-
-const ItemWrapper = styled.div`
-  margin: 16px;
+  ::after {
+    display: block;
+    content: "";
+    width: 368px;
+  }
 `;
 
 export default ArticleList;

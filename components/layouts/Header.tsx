@@ -17,7 +17,7 @@ const Header = () => {
 };
 
 const Wrapper = styled.div`
-  padding: 16px;
+  padding: 32px;
 `;
 
 const ToggleWrapper = styled.div`

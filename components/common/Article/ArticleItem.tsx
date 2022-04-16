@@ -24,7 +24,8 @@ const ArticleItem = ({ article }: Prop) => {
 };
 
 const Wrapper = styled.article`
-  width: 300px;
+  max-width: 368px;
+  padding: 16px;
 `;
 
 const A = styled.a`
@@ -43,7 +44,7 @@ const ArticleLinkIcon = styled(LinkIcon)`
 `;
 
 const ArticleItemWrapper = styled.div`
-  width: calc(100% - 48px);
+  width: calc(100% - 32px);
 `;
 
 const Site = styled.span`
