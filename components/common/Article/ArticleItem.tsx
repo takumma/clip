@@ -9,7 +9,7 @@ type Prop = {
 const ArticleItem = ({ article }: Prop) => {
   return (
     <Wrapper>
-      <A href={article.url}>
+      <A href={article.url} target="_blank">
         <ArticleItemWrapper>
           <Title>{article.title}</Title>
           <ArticleMeta>

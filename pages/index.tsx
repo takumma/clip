@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import ArticleList from "../components/common/Article/ArticleList";
 import Pagenation from "../components/common/Pagenation/Pagenation";
+import usePagenation from "../components/common/Pagenation/usePagenation";
 import { Article } from "../types/article";
 
 const Home: NextPage = () => {
@@ -183,6 +184,11 @@ const Home: NextPage = () => {
 
   const PAGE_SIZE = 10;
 
+  const { pagenationRange } = usePagenation({
+    totalCount: articles.length,
+    pageSize: PAGE_SIZE,
+  });
+
   useEffect(() => {
     const startPageIndex = (currentPage - 1) * PAGE_SIZE;
     const endPageIndex = startPageIndex + PAGE_SIZE;
@@ -202,10 +208,8 @@ const Home: NextPage = () => {
             if (v < 1) return;
             setCurrentPage(v);
           }}
-          totalCount={articles.length}
-          siblingCount={6}
+          pagenationRange={pagenationRange}
           currentPage={currentPage}
-          pageSize={PAGE_SIZE}
         />
       </PagenationWrapper>
     </>

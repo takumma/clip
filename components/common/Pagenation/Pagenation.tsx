@@ -2,30 +2,14 @@ import styled, { css } from "styled-components";
 import LeftArrow from "./Arrows/LeftArrow";
 import RightArrow from "./Arrows/RightArrow";
 import PagenationNumber from "./PagenationNumber";
-import usePagenation from "./usePagenation";
 
 type Prop = {
   onPageChange: (v: number) => void;
-  totalCount: number;
-  siblingCount: number;
   currentPage: number;
-  pageSize: number;
+  pagenationRange: number[];
 };
 
-const Pagenation = ({
-  onPageChange,
-  totalCount,
-  siblingCount,
-  currentPage,
-  pageSize,
-}: Prop) => {
-  const { pagenationRange } = usePagenation({
-    totalCount,
-    siblingCount,
-    currentPage,
-    pageSize,
-  });
-
+const Pagenation = ({ onPageChange, currentPage, pagenationRange }: Prop) => {
   const onNext = () => {
     onPageChange(currentPage + 1);
   };
@@ -86,11 +70,13 @@ const ArrowWrapper = styled.li<ArrowWrapperType>`
   margin: 0 12px;
   padding: 7px 5px;
   border-radius: 50%;
+  cursor: pointer;
   ${(props) => (props.disabled ? ArrowDisabled : ArrowHover)}
 `;
 
 const ArrowDisabled = css`
   pointer-events: none;
+  opacity: 0.5;
 `;
 
 const ArrowHover = css`

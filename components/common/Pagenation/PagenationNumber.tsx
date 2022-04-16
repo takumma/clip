@@ -21,6 +21,7 @@ const Wrapper = styled.span<WrapperProp>`
   width: 24px;
   height: 24px;
   text-align: center;
+  cursor: pointer;
   ${({ isCurrent }) =>
     isCurrent &&
     css`
