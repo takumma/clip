@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 import { Article } from "../../../types/article";
 import LinkIcon from "./LinkIcon";
@@ -8,7 +9,11 @@ type Prop = {
 
 const formatDate = (isoDate: string) => {
   const date = new Date(isoDate);
-  return `${date.getFullYear()} / ${date.getMonth()} / ${date.getDay()}`;
+  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+};
+
+const getFaviconSrcFromOrigin = (hostname: string) => {
+  return `https://www.google.com/s2/favicons?sz=32&domain_url=${hostname}`;
 };
 
 const ArticleItem = ({ article }: Prop) => {
@@ -18,8 +23,17 @@ const ArticleItem = ({ article }: Prop) => {
         <ArticleItemWrapper>
           <Title>{article.title}</Title>
           <ArticleMeta>
+            <Image
+              width={16}
+              height={16}
+              layout="fixed"
+              src={getFaviconSrcFromOrigin(article.link)}
+              alt={article.link}
+            />
             <Site>{article.link.split("/")[2]}</Site>
-            <time>{formatDate(article.isoDate)}</time>
+            <time dateTime={article.isoDate}>
+              {formatDate(article.isoDate)}
+            </time>
           </ArticleMeta>
         </ArticleItemWrapper>
         <ArticleLinkIcon />
@@ -53,12 +67,13 @@ const ArticleItemWrapper = styled.div`
 `;
 
 const Site = styled.span`
-  margin-right: 24px;
+  margin: 0 24px 0 4px;
 `;
 
 const ArticleMeta = styled.p`
   margin: 8px 0;
   display: flex;
+  align-items: center;
   color: ${({ theme }) => theme.secondaryTextColor};
   font-size: 0.875rem;
 `;
