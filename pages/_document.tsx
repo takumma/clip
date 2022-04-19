@@ -38,6 +38,20 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta name="description" content="" />
+          <link rel="canonical" href="https://clip.takumma.net" />
+          <meta property="og:url" content="https://clip.takumma.net" />
+          <meta
+            property="og:title"
+            content="cLip - takummaの記事まとめサイト"
+          />
+          <meta property="og:description" content="" />
+          <meta
+            property="og:image"
+            content="https://clip.takumma.net/clip_logo.png"
+          />
+          <meta property="og:type" content="article" />
+          <meta property="og:site_name" content="cLip" />
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
             rel="stylesheet"
