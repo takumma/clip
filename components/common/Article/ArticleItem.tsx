@@ -1,19 +1,11 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { Article } from "../../../types/article";
+import { formatDate, getFaviconSrcFromOrigin } from "../../../utils/helpers";
 import LinkIcon from "./LinkIcon";
 
 type Prop = {
   article: Article;
-};
-
-const formatDate = (isoDate: string) => {
-  const date = new Date(isoDate);
-  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
-};
-
-const getFaviconSrcFromOrigin = (hostname: string) => {
-  return `https://www.google.com/s2/favicons?sz=32&domain_url=${hostname}`;
 };
 
 const ArticleItem = ({ article }: Prop) => {

@@ -6,6 +6,12 @@ export const useArticles = (articles: Article[]) => {
   const [currentArticles, setCurrentArticles] = useState<Article[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const onSetCurrentPage = (v: number) => {
+    if (v < 1) return;
+
+    setCurrentPage(v);
+  };
+
   const PAGE_SIZE = 10;
 
   const { pagenationRange } = usePagenation({
@@ -20,5 +26,5 @@ export const useArticles = (articles: Article[]) => {
     setCurrentArticles(newArticles);
   }, [articles, currentPage]);
 
-  return { currentArticles, currentPage, pagenationRange, setCurrentPage };
+  return { currentArticles, currentPage, pagenationRange, onSetCurrentPage };
 };

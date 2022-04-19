@@ -1,13 +1,9 @@
 import { useMemo } from "react";
+import { range } from "../utils/helpers";
 
 type Prop = {
   totalCount: number;
   pageSize: number;
-};
-
-const range = (start: number, end: number): number[] => {
-  const length = end - start + 1;
-  return Array.from({ length }, (_, index) => index + start);
 };
 
 const usePagenation = ({ totalCount, pageSize }: Prop) => {

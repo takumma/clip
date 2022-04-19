@@ -4,22 +4,23 @@ import ArticleList from "../components/common/Article/ArticleList";
 import Pagenation from "../components/common/Pagenation/Pagenation";
 import articles from "../.contents/articles.json";
 import { useArticles } from "../hooks/useArticles";
+import Head from "next/head";
 
 const Home: NextPage = () => {
-  const { currentArticles, currentPage, pagenationRange, setCurrentPage } =
+  const { currentArticles, currentPage, pagenationRange, onSetCurrentPage } =
     useArticles(articles);
 
   return (
     <>
+      <Head>
+        <title>cLip - takummaの書いた記事まとめ</title>
+      </Head>
       <Wrapper>
         {currentArticles && <ArticleList articles={currentArticles} />}
       </Wrapper>
       <PagenationWrapper>
         <Pagenation
-          onPageChange={(v) => {
-            if (v < 1) return;
-            setCurrentPage(v);
-          }}
+          onPageChange={(v) => onSetCurrentPage(v)}
           pagenationRange={pagenationRange}
           currentPage={currentPage}
         />
