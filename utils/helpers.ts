@@ -11,3 +11,9 @@ export const range = (start: number, end: number): number[] => {
   const length = end - start + 1;
   return Array.from({ length }, (_, index) => index + start);
 };
+
+export const getBaseUrl = () => {
+  return process.env.NODE_ENV === "production"
+    ? "https://clip.takumma.net"
+    : "http://localhost:3000";
+};

@@ -6,6 +6,7 @@ import Document, {
   NextScript,
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { getBaseUrl } from "../utils/helpers";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -38,20 +39,13 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta name="description" content="" />
-          <link rel="canonical" href="https://clip.takumma.net" />
-          <meta property="og:url" content="https://clip.takumma.net" />
-          <meta
-            property="og:title"
-            content="cLip - takummaの記事まとめサイト"
-          />
-          <meta property="og:description" content="" />
-          <meta
-            property="og:image"
-            content="https://clip.takumma.net/clip_logo.png"
-          />
+          <link rel="canonical" href={getBaseUrl()} />
+          <meta property="og:url" content={getBaseUrl()} />
+          <meta property="og:title" content="cLip - takummaの記事まとめ" />
+          <meta property="og:image" content={`${getBaseUrl()}/clip_logo.png`} />
           <meta property="og:type" content="article" />
           <meta property="og:site_name" content="cLip" />
+          <meta name="twitter:card" content="summary" />
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
             rel="stylesheet"
