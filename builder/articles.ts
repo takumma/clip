@@ -1,11 +1,6 @@
 import fs from "fs-extra";
 import Parser from "rss-parser";
-
-const sources = [
-  "https://zenn.dev/takumma/feed",
-  "https://qiita.com/takumma/feed.atom",
-  "https://blog.takumma.net/feed",
-];
+import {sources} from "../feeds";
 
 type FeedItem = {
   title: string;
